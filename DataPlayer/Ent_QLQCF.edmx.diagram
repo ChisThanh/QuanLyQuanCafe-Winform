@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28666b6624f14c43b111be4baf12527d" Name="Diagram1">
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_ChiTietHoaDon" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_HoaDon" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_KhachHang" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_Loai" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_NhanVien" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_TaiKhoan" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dtb_QLQCFModel.tbe_ThucDon" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="dtb_QLQCFModel.frn_ChiTietHoaDon_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="dtb_QLQCFModel.frn_ChiTietHoaDon_ThucDon" ManuallyRouted="false" />
+        <AssociationConnector Association="dtb_QLQCFModel.frn_HoaDon_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="dtb_QLQCFModel.frn_HoaDon_NhanVien" ManuallyRouted="false" />
+        <AssociationConnector Association="dtb_QLQCFModel.frn_ThucDon_Loai" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

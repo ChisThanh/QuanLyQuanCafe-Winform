@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dtb_QLQCFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbe_ChiTietHoaDon">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+            <PropertyRef Name="MaThucDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="MaThucDon" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="tbe_HoaDon">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="NgayDat" Type="date" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="MaNhanVien" Type="char" MaxLength="4" />
+          <Property Name="MaKhachHang" Type="char" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="tbe_KhachHang">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="30" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbe_Loai">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbe_NhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TenNhanVien" Type="nvarchar" MaxLength="30" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tbe_TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="30" />
+          <Property Name="NhomQuyen" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbe_ThucDon">
+          <Key>
+            <PropertyRef Name="MaThucDon" />
+          </Key>
+          <Property Name="MaThucDon" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="TenThucDon" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonViTinh" Type="nvarchar" MaxLength="15" />
+          <Property Name="GiaBan" Type="float" />
+          <Property Name="MaLoai" Type="char" MaxLength="4" />
+        </EntityType>
+        <Association Name="frn_ChiTietHoaDon_HoaDon">
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="1" />
+          <End Role="tbe_ChiTietHoaDon" Type="Self.tbe_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_HoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="tbe_ChiTietHoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_ChiTietHoaDon_ThucDon">
+          <End Role="tbe_ThucDon" Type="Self.tbe_ThucDon" Multiplicity="1" />
+          <End Role="tbe_ChiTietHoaDon" Type="Self.tbe_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_ThucDon">
+              <PropertyRef Name="MaThucDon" />
+            </Principal>
+            <Dependent Role="tbe_ChiTietHoaDon">
+              <PropertyRef Name="MaThucDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_HoaDon_KhachHang">
+          <End Role="tbe_KhachHang" Type="Self.tbe_KhachHang" Multiplicity="0..1" />
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_KhachHang">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="tbe_HoaDon">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_HoaDon_NhanVien">
+          <End Role="tbe_NhanVien" Type="Self.tbe_NhanVien" Multiplicity="0..1" />
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="tbe_HoaDon">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_ThucDon_Loai">
+          <End Role="tbe_Loai" Type="Self.tbe_Loai" Multiplicity="0..1" />
+          <End Role="tbe_ThucDon" Type="Self.tbe_ThucDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_Loai">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="tbe_ThucDon">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DoanhThuTheoLoai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenLoai" Type="nvarchar" MaxLength="30" />
+                <Property Name="DoanhThu" Type="float" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="KhachHangMuaNhieuNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenKhachHang" Type="nvarchar" MaxLength="30" />
+                <Property Name="SoLuongMua" Type="int" />
+                <Property Name="TongTienChiTra" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="SanPhamBanChayNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" />
+                <Property Name="SoLuongBan" Type="int" />
+                <Property Name="TongTien" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TimKiemNhanVienTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenNhanVien" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MaNhanVien" Type="char" MaxLength="4" />
+                <Property Name="TenNhanVien" Type="nvarchar" MaxLength="30" />
+                <Property Name="NgaySinh" Type="date" />
+                <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="TongDoanhThuTrongKhoang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+        </Function>
+        <Function Name="TongDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+        </Function>
+        <Function Name="TongKhachHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
+        <Function Name="TongNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
+        <Function Name="TongSoLuongDonTheoThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Thang" Type="nvarchar" MaxLength="4000" />
+                <Property Name="TongSoLuongDon" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Top10DoanhThuNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NgayBatDau" Type="date" Mode="In" />
+          <Parameter Name="NgayKetThuc" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TenNhanVien" Type="nvarchar" MaxLength="30" />
+                <Property Name="DoanhThu" Type="float" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="dtb_QLQCFModelStoreContainer">
+          <EntitySet Name="tbe_ChiTietHoaDon" EntityType="Self.tbe_ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_HoaDon" EntityType="Self.tbe_HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_KhachHang" EntityType="Self.tbe_KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_Loai" EntityType="Self.tbe_Loai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_NhanVien" EntityType="Self.tbe_NhanVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_TaiKhoan" EntityType="Self.tbe_TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbe_ThucDon" EntityType="Self.tbe_ThucDon" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="frn_ChiTietHoaDon_HoaDon" Association="Self.frn_ChiTietHoaDon_HoaDon">
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+            <End Role="tbe_ChiTietHoaDon" EntitySet="tbe_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_ChiTietHoaDon_ThucDon" Association="Self.frn_ChiTietHoaDon_ThucDon">
+            <End Role="tbe_ThucDon" EntitySet="tbe_ThucDon" />
+            <End Role="tbe_ChiTietHoaDon" EntitySet="tbe_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_HoaDon_KhachHang" Association="Self.frn_HoaDon_KhachHang">
+            <End Role="tbe_KhachHang" EntitySet="tbe_KhachHang" />
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_HoaDon_NhanVien" Association="Self.frn_HoaDon_NhanVien">
+            <End Role="tbe_NhanVien" EntitySet="tbe_NhanVien" />
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_ThucDon_Loai" Association="Self.frn_ThucDon_Loai">
+            <End Role="tbe_Loai" EntitySet="tbe_Loai" />
+            <End Role="tbe_ThucDon" EntitySet="tbe_ThucDon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dtb_QLQCFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbe_ChiTietHoaDon">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+            <PropertyRef Name="MaThucDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MaThucDon" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <NavigationProperty Name="tbe_HoaDon" Relationship="Self.frn_ChiTietHoaDon_HoaDon" FromRole="tbe_ChiTietHoaDon" ToRole="tbe_HoaDon" />
+          <NavigationProperty Name="tbe_ThucDon" Relationship="Self.frn_ChiTietHoaDon_ThucDon" FromRole="tbe_ChiTietHoaDon" ToRole="tbe_ThucDon" />
+        </EntityType>
+        <EntityType Name="tbe_HoaDon">
+          <Key>
+            <PropertyRef Name="MaHoaDon" />
+          </Key>
+          <Property Name="MaHoaDon" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NgayDat" Type="DateTime" Precision="0" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="MaNhanVien" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="MaKhachHang" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tbe_ChiTietHoaDon" Relationship="Self.frn_ChiTietHoaDon_HoaDon" FromRole="tbe_HoaDon" ToRole="tbe_ChiTietHoaDon" />
+          <NavigationProperty Name="tbe_KhachHang" Relationship="Self.frn_HoaDon_KhachHang" FromRole="tbe_HoaDon" ToRole="tbe_KhachHang" />
+          <NavigationProperty Name="tbe_NhanVien" Relationship="Self.frn_HoaDon_NhanVien" FromRole="tbe_HoaDon" ToRole="tbe_NhanVien" />
+        </EntityType>
+        <EntityType Name="tbe_KhachHang">
+          <Key>
+            <PropertyRef Name="MaKhachHang" />
+          </Key>
+          <Property Name="MaKhachHang" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbe_HoaDon" Relationship="Self.frn_HoaDon_KhachHang" FromRole="tbe_KhachHang" ToRole="tbe_HoaDon" />
+        </EntityType>
+        <EntityType Name="tbe_Loai">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenLoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbe_ThucDon" Relationship="Self.frn_ThucDon_Loai" FromRole="tbe_Loai" ToRole="tbe_ThucDon" />
+        </EntityType>
+        <EntityType Name="tbe_NhanVien">
+          <Key>
+            <PropertyRef Name="MaNhanVien" />
+          </Key>
+          <Property Name="MaNhanVien" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenNhanVien" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbe_HoaDon" Relationship="Self.frn_HoaDon_NhanVien" FromRole="tbe_NhanVien" ToRole="tbe_HoaDon" />
+        </EntityType>
+        <EntityType Name="tbe_TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTaiKhoan" />
+          </Key>
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NhomQuyen" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbe_ThucDon">
+          <Key>
+            <PropertyRef Name="MaThucDon" />
+          </Key>
+          <Property Name="MaThucDon" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TenThucDon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonViTinh" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="GiaBan" Type="Double" />
+          <Property Name="MaLoai" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tbe_ChiTietHoaDon" Relationship="Self.frn_ChiTietHoaDon_ThucDon" FromRole="tbe_ThucDon" ToRole="tbe_ChiTietHoaDon" />
+          <NavigationProperty Name="tbe_Loai" Relationship="Self.frn_ThucDon_Loai" FromRole="tbe_ThucDon" ToRole="tbe_Loai" />
+        </EntityType>
+        <Association Name="frn_ChiTietHoaDon_HoaDon">
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="1" />
+          <End Role="tbe_ChiTietHoaDon" Type="Self.tbe_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_HoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Principal>
+            <Dependent Role="tbe_ChiTietHoaDon">
+              <PropertyRef Name="MaHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_ChiTietHoaDon_ThucDon">
+          <End Role="tbe_ThucDon" Type="Self.tbe_ThucDon" Multiplicity="1" />
+          <End Role="tbe_ChiTietHoaDon" Type="Self.tbe_ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_ThucDon">
+              <PropertyRef Name="MaThucDon" />
+            </Principal>
+            <Dependent Role="tbe_ChiTietHoaDon">
+              <PropertyRef Name="MaThucDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_HoaDon_KhachHang">
+          <End Role="tbe_KhachHang" Type="Self.tbe_KhachHang" Multiplicity="0..1" />
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_KhachHang">
+              <PropertyRef Name="MaKhachHang" />
+            </Principal>
+            <Dependent Role="tbe_HoaDon">
+              <PropertyRef Name="MaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_HoaDon_NhanVien">
+          <End Role="tbe_NhanVien" Type="Self.tbe_NhanVien" Multiplicity="0..1" />
+          <End Role="tbe_HoaDon" Type="Self.tbe_HoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_NhanVien">
+              <PropertyRef Name="MaNhanVien" />
+            </Principal>
+            <Dependent Role="tbe_HoaDon">
+              <PropertyRef Name="MaNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="frn_ThucDon_Loai">
+          <End Role="tbe_Loai" Type="Self.tbe_Loai" Multiplicity="0..1" />
+          <End Role="tbe_ThucDon" Type="Self.tbe_ThucDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbe_Loai">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="tbe_ThucDon">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLQCFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbe_ChiTietHoaDon" EntityType="Self.tbe_ChiTietHoaDon" />
+          <EntitySet Name="tbe_HoaDon" EntityType="Self.tbe_HoaDon" />
+          <EntitySet Name="tbe_KhachHang" EntityType="Self.tbe_KhachHang" />
+          <EntitySet Name="tbe_Loai" EntityType="Self.tbe_Loai" />
+          <EntitySet Name="tbe_NhanVien" EntityType="Self.tbe_NhanVien" />
+          <EntitySet Name="tbe_TaiKhoan" EntityType="Self.tbe_TaiKhoan" />
+          <EntitySet Name="tbe_ThucDon" EntityType="Self.tbe_ThucDon" />
+          <AssociationSet Name="frn_ChiTietHoaDon_HoaDon" Association="Self.frn_ChiTietHoaDon_HoaDon">
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+            <End Role="tbe_ChiTietHoaDon" EntitySet="tbe_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_ChiTietHoaDon_ThucDon" Association="Self.frn_ChiTietHoaDon_ThucDon">
+            <End Role="tbe_ThucDon" EntitySet="tbe_ThucDon" />
+            <End Role="tbe_ChiTietHoaDon" EntitySet="tbe_ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_HoaDon_KhachHang" Association="Self.frn_HoaDon_KhachHang">
+            <End Role="tbe_KhachHang" EntitySet="tbe_KhachHang" />
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_HoaDon_NhanVien" Association="Self.frn_HoaDon_NhanVien">
+            <End Role="tbe_NhanVien" EntitySet="tbe_NhanVien" />
+            <End Role="tbe_HoaDon" EntitySet="tbe_HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="frn_ThucDon_Loai" Association="Self.frn_ThucDon_Loai">
+            <End Role="tbe_Loai" EntitySet="tbe_Loai" />
+            <End Role="tbe_ThucDon" EntitySet="tbe_ThucDon" />
+          </AssociationSet>
+          <FunctionImport Name="DoanhThuTheoLoai" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.DoanhThuTheoLoai_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="TongSoLuongDonTheoThang" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.TongSoLuongDonTheoThang_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Top10DoanhThuNhanVien" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.Top10DoanhThuNhanVien_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="KhachHangMuaNhieuNhat" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.KhachHangMuaNhieuNhat_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SanPhamBanChayNhat" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.SanPhamBanChayNhat_Result)">
+            <Parameter Name="NgayBatDau" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayKetThuc" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="TimKiemNhanVienTheoTen" IsComposable="true" ReturnType="Collection(dtb_QLQCFModel.TimKiemNhanVienTheoTen_Result)">
+            <Parameter Name="TenNhanVien" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="DoanhThuTheoLoai_Result">
+          <Property Type="String" Name="TenLoai" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="DoanhThu" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TongSoLuongDonTheoThang_Result">
+          <Property Type="String" Name="Thang" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="TongSoLuongDon" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Top10DoanhThuNhanVien_Result">
+          <Property Type="String" Name="TenNhanVien" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="DoanhThu" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="KhachHangMuaNhieuNhat_Result">
+          <Property Type="String" Name="TenKhachHang" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="SoLuongMua" Nullable="true" />
+          <Property Type="Double" Name="TongTienChiTra" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SanPhamBanChayNhat_Result">
+          <Property Type="String" Name="TenSanPham" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SoLuongBan" Nullable="true" />
+          <Property Type="Double" Name="TongTien" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TimKiemNhanVienTheoTen_Result">
+          <Property Type="String" Name="MaNhanVien" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="TenNhanVien" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="NgaySinh" Nullable="true" Precision="10" />
+          <Property Type="String" Name="GioiTinh" Nullable="true" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dtb_QLQCFModelStoreContainer" CdmEntityContainer="QLQCFEntities">
+          <EntitySetMapping Name="tbe_ChiTietHoaDon">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_ChiTietHoaDon">
+              <MappingFragment StoreEntitySet="tbe_ChiTietHoaDon">
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="MaThucDon" ColumnName="MaThucDon" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_HoaDon">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_HoaDon">
+              <MappingFragment StoreEntitySet="tbe_HoaDon">
+                <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_KhachHang">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_KhachHang">
+              <MappingFragment StoreEntitySet="tbe_KhachHang">
+                <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_Loai">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_Loai">
+              <MappingFragment StoreEntitySet="tbe_Loai">
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_NhanVien">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_NhanVien">
+              <MappingFragment StoreEntitySet="tbe_NhanVien">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_TaiKhoan">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_TaiKhoan">
+              <MappingFragment StoreEntitySet="tbe_TaiKhoan">
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="NhomQuyen" ColumnName="NhomQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbe_ThucDon">
+            <EntityTypeMapping TypeName="dtb_QLQCFModel.tbe_ThucDon">
+              <MappingFragment StoreEntitySet="tbe_ThucDon">
+                <ScalarProperty Name="MaThucDon" ColumnName="MaThucDon" />
+                <ScalarProperty Name="TenThucDon" ColumnName="TenThucDon" />
+                <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DoanhThuTheoLoai" FunctionName="dtb_QLQCFModel.Store.DoanhThuTheoLoai">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.DoanhThuTheoLoai_Result">
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TongSoLuongDonTheoThang" FunctionName="dtb_QLQCFModel.Store.TongSoLuongDonTheoThang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.TongSoLuongDonTheoThang_Result">
+                <ScalarProperty Name="Thang" ColumnName="Thang" />
+                <ScalarProperty Name="TongSoLuongDon" ColumnName="TongSoLuongDon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Top10DoanhThuNhanVien" FunctionName="dtb_QLQCFModel.Store.Top10DoanhThuNhanVien">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.Top10DoanhThuNhanVien_Result">
+                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
+                <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="KhachHangMuaNhieuNhat" FunctionName="dtb_QLQCFModel.Store.KhachHangMuaNhieuNhat">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.KhachHangMuaNhieuNhat_Result">
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="SoLuongMua" ColumnName="SoLuongMua" />
+                <ScalarProperty Name="TongTienChiTra" ColumnName="TongTienChiTra" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SanPhamBanChayNhat" FunctionName="dtb_QLQCFModel.Store.SanPhamBanChayNhat">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.SanPhamBanChayNhat_Result">
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="SoLuongBan" ColumnName="SoLuongBan" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TimKiemNhanVienTheoTen" FunctionName="dtb_QLQCFModel.Store.TimKiemNhanVienTheoTen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dtb_QLQCFModel.TimKiemNhanVienTheoTen_Result">
+                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
+                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

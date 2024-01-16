@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1326FE9-AD30-44F5-997F-468AC29F342A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Nhom9_QuanLyQuanCafe</RootNamespace>
+    <AssemblyName>Nhom9_QuanLyQuanCafe</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frm_BackupRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_BackupRestore.designer.cs">
+      <DependentUpon>frm_BackupRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Bill.designer.cs">
+      <DependentUpon>frm_Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ChangePassword.designer.cs">
+      <DependentUpon>frm_ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Customer.designer.cs">
+      <DependentUpon>frm_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Database.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Database.designer.cs">
+      <DependentUpon>frm_Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Employee.Designer.cs">
+      <DependentUpon>frm_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Home.designer.cs">
+      <DependentUpon>frm_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Menu.designer.cs">
+      <DependentUpon>frm_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Permission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Permission.designer.cs">
+      <DependentUpon>frm_Permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_SignIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_SignIn.designer.cs">
+      <DependentUpon>frm_SignIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Statistical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Statistical.Designer.cs">
+      <DependentUpon>frm_Statistical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Hp.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_BackupRestore.resx">
+      <DependentUpon>frm_BackupRestore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Bill.resx">
+      <DependentUpon>frm_Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ChangePassword.resx">
+      <DependentUpon>frm_ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Customer.resx">
+      <DependentUpon>frm_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Database.resx">
+      <DependentUpon>frm_Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Employee.resx">
+      <DependentUpon>frm_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Home.resx">
+      <DependentUpon>frm_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Menu.resx">
+      <DependentUpon>frm_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Permission.resx">
+      <DependentUpon>frm_Permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_SignIn.resx">
+      <DependentUpon>frm_SignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Statistical.resx">
+      <DependentUpon>frm_Statistical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataPlayer\DataPlayer.csproj">
+      <Project>{6fccef27-5610-465d-9019-cc2c3d2b8631}</Project>
+      <Name>DataPlayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Backup.png" />
+    <Content Include="Assets\Bill.png" />
+    <Content Include="Assets\Code.png" />
+    <Content Include="Assets\Customer.png" />
+    <Content Include="Assets\Database.png" />
+    <Content Include="Assets\Delete.png" />
+    <Content Include="Assets\Diagram.jpg" />
+    <Content Include="Assets\Employee.png" />
+    <Content Include="Assets\Eye.png" />
+    <Content Include="Assets\Eye_Cross.png" />
+    <Content Include="Assets\Filter.png" />
+    <Content Include="Assets\Food.png" />
+    <Content Include="Assets\Group.png" />
+    <Content Include="Assets\Insert.png" />
+    <Content Include="Assets\Lattecrone.png" />
+    <Content Include="Assets\Menu.png" />
+    <Content Include="Assets\Next.png" />
+    <Content Include="Assets\Permission.png" />
+    <Content Include="Assets\Previous.png" />
+    <Content Include="Assets\Restore.png" />
+    <Content Include="Assets\Search.png" />
+    <Content Include="Assets\SignOut.png" />
+    <Content Include="Assets\Statistic.png" />
+    <Content Include="Assets\Update.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
